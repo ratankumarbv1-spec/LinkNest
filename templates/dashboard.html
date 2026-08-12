@@ -1,0 +1,331 @@
+{% extends 'base.html' %}
+
+{% block title %}
+LinkNest
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <!-- HEADER -->
+
+    <div class="dashboard">
+
+    <!-- TOP BAR -->
+
+    <div class="dashboard-topbar">
+
+        <a href="{% url 'dashboard' %}" class="dashboard-logo">
+            <span>🔗</span>
+            LinkNest
+        </a>
+
+
+        <a href="{% url 'profile' %}" class="dashboard-user">
+
+            <span class="user-avatar">
+                {{ request.user.username|first|upper }}
+            </span>
+
+            <span class="user-name">
+                {{ request.user.username }}
+            </span>
+
+            <span class="user-arrow">
+                ↓
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-heading">
+
+            <p class="dashboard-eyebrow">
+                YOUR PERSONAL LIBRARY
+            </p>
+
+            <h1>
+                Welcome, {{ request.user.username }} 👋
+            </h1>
+
+            <p class="dashboard-subtitle">
+                Your corner of the internet, organized.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'add_link' %}"
+            class="primary-button add-link-button"
+        >
+            <span>+</span>
+            Add Link
+        </a>
+
+    </header>
+
+
+    <!-- STATS -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <span class="stat-icon">🔗</span>
+
+            <div>
+                <strong>{{ links.count }}</strong>
+                <span>Total Links</span>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-icon">⭐</span>
+
+            <div>
+                <strong>{{ favourite_count }}</strong>
+                <span>Favorites</span>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-icon">📁</span>
+
+            <div>
+                <strong>{{ category_count }}</strong>
+                <span>Categories</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="dashboard-toolbar">
+
+        <form method="GET" class="search-form">
+
+            <span>⌕</span>
+
+            <input
+                type="text"
+                name="search"
+                value="{{ search_query }}"
+                placeholder="Search your links..."
+            >
+
+        </form>
+
+
+        <div class="filter-buttons">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="{% if not selected_category and not request.GET.favourites %}active{% endif %}"
+            >
+                All
+            </a>
+        
+        
+            <a
+                href="?favourites=true"
+                class="{% if request.GET.favourites == 'true' %}active{% endif %}"
+            >
+                ⭐ Favorites
+            </a>
+        
+        
+            <a
+                href="?category=github"
+                class="{% if selected_category == 'github' %}active{% endif %}"
+            >
+                GitHub
+            </a>
+        
+        
+            <a
+                href="?category=youtube"
+                class="{% if selected_category == 'youtube' %}active{% endif %}"
+            >
+                YouTube
+            </a>
+        
+        
+            <a
+                href="?category=documentation"
+                class="{% if selected_category == 'documentation' %}active{% endif %}"
+            >
+                Documentation
+            </a>
+        
+        
+            <a
+                href="?category=article"
+                class="{% if selected_category == 'article' %}active{% endif %}"
+            >
+                Articles
+            </a>
+        
+        
+            <a
+                href="?category=leetcode"
+                class="{% if selected_category == 'leetcode' %}active{% endif %}"
+            >
+                LeetCode
+            </a>
+        
+        
+            <a
+                href="?category=tool"
+                class="{% if selected_category == 'tool' %}active{% endif %}"
+            >
+                Tools
+            </a>
+        
+        </div>
+
+    </section>
+
+
+    <!-- LINKS -->
+
+    <section class="links-section">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Your Links</h2>
+
+                <p>
+                    Everything worth remembering.
+                </p>
+            </div>
+
+        </div>
+
+
+        {% if links %}
+
+            <div class="dashboard-links">
+
+                {% for link in links %}
+
+                    <article class="dashboard-card">
+
+                        <div class="dashboard-card-content">
+
+                            <div>
+
+                                <h3>
+                                    {{ link.title }}
+                                </h3>
+
+                                <p>
+                                    {{ link.description }}
+                                </p>
+
+                            </div>
+
+
+                            <span class="category">
+                                {{ link.get_category_display }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="dashboard-card-footer">
+
+                            {% if link.is_favourite %}
+
+                                <span class="favourite">
+                                    ⭐ Favourite
+                                </span>
+
+                            {% else %}
+
+                                <span></span>
+
+                            {% endif %}
+
+
+                            <div class="link-actions">
+
+                                <a
+                                    href="{% url 'edit_link' link.id %}"
+                                    class="edit-link"
+                                >
+                                    Edit
+                                </a>
+                                
+                                <a href="{% url 'delete_link' link.id %}"
+                                class="delete-link"
+                                >
+                                    Delete
+                                </a>
+                            
+                                <a
+                                    href="{{ link.url }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Open Link →
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    🔗
+                </div>
+
+                <h2>Your Nest is empty</h2>
+
+                <p>
+                    Start saving the things worth remembering.
+                </p>
+
+                <a
+                    href="{% url 'add_link' %}"
+                    class="primary-button"
+                >
+                    Add your first link →
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile | LinkNest
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-header">
+
+        <div class="profile-avatar">
+            {{ user.username|first|upper }}
+        </div>
+
+        <div>
+
+            <p class="dashboard-eyebrow">
+                LINKNEST PROFILE
+            </p>
+
+            <h1>
+                {{ user.username }}
+            </h1>
+
+            <p>
+                {{ user.email }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-stats">
+
+        <div class="stat-card">
+
+            <strong>
+                {{ link_count }}
+            </strong>
+
+            <span>
+                Total Links
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <strong>
+                {{ favourite_count }}
+            </strong>
+
+            <span>
+                Favorites
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <strong>
+                {{ category_count }}
+            </strong>
+
+            <span>
+                Categories
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="profile-actions">
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="primary-button"
+        >
+            ← Back to Dashboard
+        </a>
+
+
+        <form
+            method="POST"
+            action="{% url 'logout' %}"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="logout-button"
+            >
+                Logout
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

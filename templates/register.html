@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create your LinkNest account
+{% endblock %}
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <div class="auth-logo">
+                ✦
+            </div>
+
+            <p class="dashboard-eyebrow">
+                JOIN LINKNEST
+            </p>
+
+            <h1>Create your Nest.</h1>
+
+            <p>
+                Start organizing the things worth remembering.
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="auth-form">
+
+            {% csrf_token %}
+
+
+            <!-- Username -->
+
+            <div class="form-field">
+
+                <label for="id_username">
+                    Username
+                </label>
+
+                {{ form.username }}
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-field">
+
+                <label for="id_password1">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    {{ form.password1 }}
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('id_password1', this)"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+
+            <div class="form-field">
+
+                <label for="id_password2">
+                    Confirm Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    {{ form.password2 }}
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('id_password2', this)"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="primary-button auth-submit"
+            >
+                Create Account →
+            </button>
+
+        </form>
+
+
+        <p class="auth-footer">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+
+{% block title %}
+LinkNest | Your Internet, Organized
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar">
+
+    <div class="logo">
+        <span>🔗</span> LinkNest
+    </div>
+
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}" class="nav-button">Get Started</a>
+    </div>
+
+</nav>
+
+
+<main class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✦ Your personal resource library
+        </div>
+
+        <h1>
+            Your internet,<br>
+            <span>organized.</span>
+        </h1>
+
+        <p>
+            Save the things worth remembering.
+            Organize your favorite links and
+            find them whenever you need them.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'register' %}" class="primary-button">
+                Start Nesting →
+            </a>
+
+            <a href="#" class="secondary-button">
+                Explore
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-visual">
+
+        <div class="link-card card-one">
+            <span class="card-icon">◉</span>
+
+            <div>
+                <h3>Django Documentation</h3>
+                <p>docs.djangoproject.com</p>
+            </div>
+
+            <span class="star">★</span>
+        </div>
+
+
+        <div class="link-card card-two">
+            <span class="card-icon">◆</span>
+
+            <div>
+                <h3>GitHub Repository</h3>
+                <p>github.com</p>
+            </div>
+
+            <span class="star">★</span>
+        </div>
+
+
+        <div class="link-card card-three">
+            <span class="card-icon">▶</span>
+
+            <div>
+                <h3>Django Tutorial</h3>
+                <p>youtube.com</p>
+            </div>
+
+            <span class="star">★</span>
+        </div>
+
+    </div>
+
+</main>
+
+<!-- FEATURES -->
+
+<section class="features reveal" id="features">
+
+    <div class="section-heading">
+        <span class="section-label">WHY LINKNEST</span>
+
+        <h2>
+            Everything you save,
+            <span>finally organized.</span>
+        </h2>
+
+        <p>
+            Stop losing useful links across browser tabs,
+            bookmarks and random notes.
+        </p>
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card reveal">
+
+            <div class="feature-icon">
+                🔗
+            </div>
+
+            <h3>Save Anything</h3>
+
+            <p>
+                Store tutorials, repositories, articles,
+                documentation and anything else worth keeping.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-icon">
+                🗂️
+            </div>
+
+            <h3>Stay Organized</h3>
+
+            <p>
+                Sort your resources into categories and
+                keep your collection clean and manageable.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>Find It Fast</h3>
+
+            <p>
+                Search through your entire collection
+                instead of digging through hundreds of bookmarks.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card reveal">
+
+            <div class="feature-icon">
+                ⭐
+            </div>
+
+            <h3>Favorite the Important</h3>
+
+            <p>
+                Mark important resources and keep them
+                within easy reach whenever you need them.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="how-it-works reveal">
+
+    <div class="section-heading">
+
+        <span class="section-label">HOW IT WORKS</span>
+
+        <h2>
+            Three steps.
+            <span>Zero clutter.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>Save</h3>
+
+            <p>
+                Find something useful?
+                Drop the link into your Nest.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>Organize</h3>
+
+            <p>
+                Give it a category and keep
+                your resources structured.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>Rediscover</h3>
+
+            <p>
+                Search your collection and
+                find exactly what you need.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta reveal">
+
+    <div class="cta-box">
+
+        <span class="section-label">
+            YOUR SECOND BRAIN FOR THE WEB
+        </span>
+
+        <h2>
+            Ready to build your Nest?
+        </h2>
+
+        <p>
+            Start organizing the things
+            you don't want to forget.
+        </p>
+
+        <a href="#" class="primary-button">
+            Start Nesting →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        🔗 LinkNest
+    </div>
+
+    <p>
+        Save. Organize. Rediscover.
+    </p>
+
+    <span>
+        © 2026 LinkNest
+    </span>
+
+</footer>
+
+
+<section class="stats reveal">
+
+    <div>
+        <strong>1,200+</strong>
+        <span>Resources saved</span>
+    </div>
+
+    <div>
+        <strong>50+</strong>
+        <span>Categories</span>
+    </div>
+
+    <div>
+        <strong>100%</strong>
+        <span>Organized</span>
+    </div>
+
+</section>
+
+{% endblock %}

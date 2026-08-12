@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete Link | LinkNest
+{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <div class="form-header">
+
+        <p class="dashboard-eyebrow">
+            YOUR PERSONAL LIBRARY
+        </p>
+
+        <h1>Delete Link?</h1>
+
+        <p>
+            Are you sure you want to remove this link?
+            This action cannot be undone.
+        </p>
+
+    </div>
+
+
+    <div class="delete-card">
+
+        <h2>
+            {{ link.title }}
+        </h2>
+
+        <p>
+            {{ link.description }}
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="delete-button"
+                >
+                    Yes, Delete
+                </button>
+
+                <a
+                    href="{% url 'dashboard' %}"
+                    class="secondary-button"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

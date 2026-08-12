@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login | LinkNest
+{% endblock %}
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+
+            <div class="auth-logo">
+                ✦
+            </div>
+
+            <p class="dashboard-eyebrow">
+                WELCOME BACK
+            </p>
+
+            <h1>Welcome back.</h1>
+
+            <p>
+                Continue building your personal library.
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="auth-form">
+
+            {% csrf_token %}
+
+            <div class="form-field">
+
+                <label for="id_username">
+                    Username
+                </label>
+
+                {{ form.username }}
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="id_password">
+                    Password
+                </label>
+             
+                <div class="password-wrapper">
+             
+                    {{ form.password }}
+             
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('id_password', this)"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+             
+                </div>
+             
+            </div>
+
+
+            {% if form.errors %}
+
+                <div class="form-error">
+                    Invalid username or password.
+                </div>
+
+            {% endif %}
+
+
+            <button
+                type="submit"
+                class="primary-button auth-submit"
+            >
+                Login →
+            </button>
+
+        </form>
+
+
+        <p class="auth-footer">
+
+            Don't have an account?
+
+            <a href="{% url 'register' %}">
+                Create one
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
